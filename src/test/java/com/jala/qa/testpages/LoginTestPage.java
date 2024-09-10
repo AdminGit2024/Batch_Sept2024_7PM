@@ -1,6 +1,8 @@
 package com.jala.qa.testpages;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -21,6 +23,7 @@ public class LoginTestPage extends TestBase {
 	@BeforeMethod
 	public void setup() {
 		Initialization();
+	
 	}
 	
 	@Test
