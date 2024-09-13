@@ -1,6 +1,12 @@
 package com.jala.qa.utility;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import com.jala.qa.pom.pages.LoginPage;
 
@@ -16,5 +22,25 @@ public class utilityClass {
 		login.clickOnLoginBtn();
 	}
 	
+	
+//	********************** Data Provider **************************
 
+	@DataProvider(name ="exceldata")
+	public Object[][] getExcelData() throws IOException {
+		String path ="C:\\Users\\OM SAI AM\\eclipse-workspace\\Jala_HybridFramwork_Sept2024_Batch_7PM\\src\\main\\java\\com\\jala\\qa\\testData\\employeeDetails.xlsx";
+		FileInputStream file = new FileInputStream(path);
+		XSSFWorkbook book = new XSSFWorkbook(file);
+		XSSFSheet sheetName = book.getSheet("Sheet1");
+		
+		Object data[][]=new Object[sheetName.getLastRowNum()][sheetName.getRow(0).getLastCellNum()];
+		for(int i=1;i<sheetName.getLastRowNum();i++) {
+		for(int j=0;j<sheetName.getRow(0).getLastCellNum();j++) {
+//			System.out.print(" "+sheetName.getRow(i).getCell(j).toString());
+			  data[i][j] = sheetName.getRow(i).getCell(j).toString();
+		}System.out.println();
+	}
+		return data;
+	}
+	
+	
 }

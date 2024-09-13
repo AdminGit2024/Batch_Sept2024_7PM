@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.jala.qa.pom.pages.CreateEmployeeDatails;
@@ -31,15 +32,34 @@ public class CreateEmployeeInfoTestPage extends TestBase{
 		info = new CreateEmployeeDatails();
 	}
 	
-	@Test
-	public void validateEmployeePage() throws InterruptedException {
-		info.enterFirstName("abc");
-		info.enterLastName("xyz");
-		info.enterEmail("abc@gmail.com");
-		info.enterMobileNuber("39899894343");
-		info.enterDOB("07/08/1997");
+//	@DataProvider
+//	public Object[][] getData() {
+//		Object data[][] = {{"hello","hi","565657"},
+//							{"hi","hello","565657"},
+//								{"hi","hello","565657"}};
+//			
+//		return data;
+//		}
+	
+//	@DataProvider
+//	public Object[][] getdata() throws IOException {
+//		utilityClass util = new utilityClass();
+//		info = new CreateEmployeeDatails();
+//		Object[][] fetchData = util.getExcelData();
+//		
+//		return fetchData;
+//	}
+	
+	
+	@Test(dataProvider = "exceldata", dataProviderClass = utilityClass.class)
+	public void validateEmployeePage(String uname, String Lname,String email, String number,String dob, String address) throws InterruptedException {
+		info.enterFirstName(uname);
+		info.enterLastName(Lname);
+		info.enterEmail(email);
+		info.enterMobileNuber(number);
+		info.enterDOB(dob);
 		info.clickOnMaleBtn();
-		info.enterAddress("pune");
+		info.enterAddress(address);
 		info.selectCountry();
 		info.selectCity();
 		info.selectSkills();

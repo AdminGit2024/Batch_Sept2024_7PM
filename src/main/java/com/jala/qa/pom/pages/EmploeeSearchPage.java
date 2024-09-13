@@ -44,13 +44,23 @@ public class EmploeeSearchPage extends TestBase {
 		
 	}
 	
-	public void getSingleData() {
+	public void getSingleData() throws InterruptedException {
+		
+		mobilenum.sendKeys("7204330225");
+		searchBtn.click();
+		Thread.sleep(3000);
 		List<WebElement> data = table.findElements(By.tagName("tr"));
 		System.out.println(data.size());
 		for(int i=0;i<data.size();i++) {
 			 System.out.println( data.get(i).getText());
-			 
-			 
+			 String actual = data.get(i).getText();
+			 String expected ="shridhar@gmail.com";
+			 if(actual.contains(expected)) {
+				 System.out.println("data matched");
+			 }
+			 else {
+				 System.out.println("data not matched");
+			 }
 		}
 	}
 	

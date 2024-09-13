@@ -33,9 +33,14 @@ public class EmployeeSearchTestPage extends TestBase {
 	}
 	
 	
-	@Test
+	@Test(priority = 1)
 	public void validateSearchPage() {
 		search.getTable();
+	}
+	
+	@Test(priority = 2)
+	public void validateWebtableInfo() throws InterruptedException {
+		search.getSingleData();;
 	}
 	
 	@AfterMethod
