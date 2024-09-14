@@ -16,6 +16,7 @@ import com.jala.qa.utility.utilityClass;
 
 public class CreateEmployeeInfoTestPage extends TestBase{
 	CreateEmployeeDatails info;
+	String path ="C:\\Users\\OM SAI AM\\eclipse-workspace\\Jala_HybridFramwork_Sept2024_Batch_7PM\\src\\main\\java\\com\\jala\\qa\\testData\\employeeDetails.xlsx";
 	public CreateEmployeeInfoTestPage() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -41,17 +42,17 @@ public class CreateEmployeeInfoTestPage extends TestBase{
 //		return data;
 //		}
 	
-//	@DataProvider
-//	public Object[][] getdata() throws IOException {
-//		utilityClass util = new utilityClass();
-//		info = new CreateEmployeeDatails();
-//		Object[][] fetchData = util.getExcelData();
-//		
-//		return fetchData;
-//	}
+	@DataProvider
+	public Object[][] getdata() throws IOException {
+		utilityClass util = new utilityClass();
+		Object[][] fetchData = util.getExcelData("Sheet1",path);
+		
+		return fetchData;
+	}
 	
 	
-	@Test(dataProvider = "exceldata", dataProviderClass = utilityClass.class)
+//	@Test(dataProvider = "exceldata", dataProviderClass = utilityClass.class)
+	@Test (dataProvider = "getdata")
 	public void validateEmployeePage(String uname, String Lname,String email, String number,String dob, String address) throws InterruptedException {
 		info.enterFirstName(uname);
 		info.enterLastName(Lname);
